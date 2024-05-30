@@ -6,18 +6,20 @@ import {
     JoinColumn,
     OneToOne,
   } from "typeorm";
+  import { Exclude } from 'class-transformer';
   import { Wallet } from "./Wallet";
   
   @Entity()
   @Unique(["username"])
   export class User {
     @PrimaryGeneratedColumn("uuid")
-    id: number;
+    id: string;
   
-    @Column()
+    @Column({ nullable: false })
     username: string;
   
-    @Column()
+    @Exclude()
+    @Column({ nullable: false })
     password: string;
   
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
@@ -25,6 +27,6 @@ import {
   
     @OneToOne(() => Wallet, (wallet) => wallet.user)
     @JoinColumn()
-    wallet: Wallet[];
+    wallet: Wallet;
   }
   

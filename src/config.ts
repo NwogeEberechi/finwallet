@@ -6,3 +6,5 @@ export const postgresUrl = process.env.POSTGRES_URL;
 export const postgresUser = process.env.POSTGRES_USER;
 export const postgresPassword = process.env.POSTGRES_PASSWORD;
 export const postgresDatabase = process.env.POSTGRES_DATABASE;
+export const jwtSecret = process.env.JWT_SECRET;
+export const tokenHeaderKey = process.env.TOKEN_HEADER_KEY;

@@ -12,19 +12,23 @@ export class Transaction {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ type: "enum", enum: TransactionType })
   type: TransactionType;
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
   amount: number;
 
-  @Column()
+  @Column({
+    type: "enum",
+    enum: TransactionStatus,
+    default: TransactionStatus.PENDING,
+  })
   status: TransactionStatus;
 
-  @Column()
+  @Column({ type: "enum", enum: TransactionPurpose })
   purpose: TransactionPurpose;
 
-  @Column({ type: 'uuid', default: () => `uuid_generate_v4()`, unique: true})
+  @Column({ type: "uuid", default: () => `uuid_generate_v4()` })
   referenceId: string;
 
   @Column("json", { nullable: true })
