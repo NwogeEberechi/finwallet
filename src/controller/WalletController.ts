@@ -24,10 +24,6 @@ export class WalletController {
     const userId = req.params.userId;
     const { amount } = req.body;
 
-    if (!amount || isNaN(amount) || amount <= 0) {
-      return res.status(400).json({ message: "Invalid amount." });
-    }
-
     try {
       const result = await walletService.deposit(userId, parseFloat(amount));
 
@@ -51,10 +47,6 @@ export class WalletController {
     const userId = req.params.userId;
     const { amount } = req.body;
 
-    if (!amount || isNaN(amount) || amount <= 0) {
-      return res.status(400).json({ message: "Invalid amount" });
-    }
-
     try {
       const result = await walletService.withdraw(userId, parseFloat(amount));
 
@@ -67,12 +59,10 @@ export class WalletController {
         .json({ message: "Withdrawal successful.", balance: result.balance });
     } catch (error) {
       console.error(error);
-      return res
-        .status(500)
-        .json({
-          message: "Error processing transaction.",
-          error: error.message,
-        });
+      return res.status(500).json({
+        message: "Error processing transaction.",
+        error: error.message,
+      });
     }
   }
 
@@ -80,26 +70,11 @@ export class WalletController {
     const walletService = new WalletService();
     const { senderWalletId, recipientWalletId, amount } = req.body;
 
-    if (!amount || isNaN(amount) || amount <= 0) {
-      return res.status(400).json({ message: "Invalid amount." });
-    }
-
-    if (!senderWalletId) {
-      return res.status(400).json({ message: "No sender wallet id provided." });
-    }
-
-    if (!recipientWalletId) {
-      return res
-        .status(400)
-        .json({ message: "No recipient wallet id provided." });
-    }
-
     try {
       const result = await walletService.transfer(
         senderWalletId,
         recipientWalletId,
-        parseFloat(amount),
-        req[" currentUser"].id
+        parseFloat(amount)
       );
 
       if (!result.success) {
@@ -112,12 +87,10 @@ export class WalletController {
       });
     } catch (error) {
       console.error(error);
-      return res
-        .status(500)
-        .json({
-          message: "Error processing transaction.",
-          error: error.message,
-        });
+      return res.status(500).json({
+        message: "Error processing transaction.",
+        error: error.message,
+      });
     }
   }
 }

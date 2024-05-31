@@ -10,12 +10,6 @@ export class UserController {
   static async signup(req: Request, res: Response) {
     const { username, password } = req.body;
 
-    if (!username || !password) {
-      return res
-        .status(400)
-        .json({ message: "username and password required." });
-    }
-
     const userRepository = AppDataSource.getRepository(User);
 
     try {

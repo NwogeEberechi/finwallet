@@ -10,36 +10,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-const typeorm_1 = require("typeorm");
-const class_transformer_1 = require("class-transformer");
-const Wallet_1 = require("./Wallet");
-let User = class User {
-};
-__decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
-    __metadata("design:type", String)
-], User.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: false }),
-    __metadata("design:type", String)
-], User.prototype, "username", void 0);
-__decorate([
-    (0, class_transformer_1.Exclude)(),
-    (0, typeorm_1.Column)({ nullable: false }),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" }),
-    __metadata("design:type", Date)
-], User.prototype, "createdAt", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => Wallet_1.Wallet, (wallet) => wallet.user),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", Wallet_1.Wallet)
-], User.prototype, "wallet", void 0);
-User = __decorate([
-    (0, typeorm_1.Entity)(),
-    (0, typeorm_1.Unique)(["username"])
-], User);
+var typeorm_1 = require("typeorm");
+var class_transformer_1 = require("class-transformer");
+var Wallet_1 = require("./Wallet");
+var User = /** @class */ (function () {
+    function User() {
+    }
+    __decorate([
+        (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
+        __metadata("design:type", String)
+    ], User.prototype, "id", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: false }),
+        __metadata("design:type", String)
+    ], User.prototype, "username", void 0);
+    __decorate([
+        (0, class_transformer_1.Exclude)(),
+        (0, typeorm_1.Column)({ nullable: false }),
+        __metadata("design:type", String)
+    ], User.prototype, "password", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ type: "timestamp", default: function () { return "CURRENT_TIMESTAMP"; } }),
+        __metadata("design:type", Date)
+    ], User.prototype, "createdAt", void 0);
+    __decorate([
+        (0, typeorm_1.OneToOne)(function () { return Wallet_1.Wallet; }, function (wallet) { return wallet.user; }),
+        (0, typeorm_1.JoinColumn)(),
+        __metadata("design:type", Wallet_1.Wallet)
+    ], User.prototype, "wallet", void 0);
+    User = __decorate([
+        (0, typeorm_1.Entity)(),
+        (0, typeorm_1.Unique)(["username"])
+    ], User);
+    return User;
+}());
 exports.User = User;
 //# sourceMappingURL=User.js.map

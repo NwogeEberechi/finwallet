@@ -146,7 +146,6 @@ class WalletService {
     senderWalletId: string,
     recipientWalletId: string,
     amount: number,
-    currentUserId: string
   ): Promise<{
     senderBalance?: number;
     recipientBalance?: number;
@@ -159,20 +158,6 @@ class WalletService {
           where: { id: senderWalletId },
           relations: ["user"],
         });
-
-        if (!senderWallet) {
-          return {
-            success: false,
-            error: "Sender wallet not found",
-          };
-        }
-
-        if (currentUserId !== senderWallet.user.id) {
-          return {
-            success: false,
-            error: "Forbidden: You can only transfer from your wallet",
-          };
-        }
 
         const recipientWallet = await transactionalEntityManager.findOne(
           Wallet,

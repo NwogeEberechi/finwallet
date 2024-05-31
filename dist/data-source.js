@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppDataSource = void 0;
 require("reflect-metadata");
-const typeorm_1 = require("typeorm");
-const User_1 = require("./entity/User");
-const Wallet_1 = require("./entity/Wallet");
-const Transaction_1 = require("./entity/Transaction");
-const config_1 = require("./config");
+var typeorm_1 = require("typeorm");
+var User_1 = require("./entity/User");
+var Wallet_1 = require("./entity/Wallet");
+var Transaction_1 = require("./entity/Transaction");
+var config_1 = require("./config");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
     url: config_1.postgresUrl,
