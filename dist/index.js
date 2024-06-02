@@ -36,25 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var morgan = require("morgan");
 var data_source_1 = require("./data-source");
-var routes_1 = require("./routes");
-var errorHandler_1 = require("./middleware/errorHandler");
 var config_1 = require("./config");
-var app = express();
-app.use(morgan("tiny"));
-app.use(express.json());
-app.use("/v1", routes_1.serviceRouter);
-app.get("*", function (req, res) {
-    res.status(505).json({ message: "Bad Request" });
-});
+var app_1 = require("./app");
 data_source_1.AppDataSource.initialize()
     .then(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        // start express server
-        app.use(errorHandler_1.errorHandler);
-        app.listen(config_1.port);
+        app_1.app.listen(config_1.port);
         console.log("Express server has started on ".concat(config_1.port));
         return [2 /*return*/];
     });
