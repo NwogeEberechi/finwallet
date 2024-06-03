@@ -137,7 +137,7 @@ var UserController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        id = request.params.id;
+                        id = request.params.userId;
                         userRepository = data_source_1.AppDataSource.getRepository("User");
                         return [4 /*yield*/, userRepository.findOne({
                                 where: { id: id },

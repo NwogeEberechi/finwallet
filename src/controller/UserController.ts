@@ -66,7 +66,7 @@ export class UserController {
   }
 
   static async one(request: Request, res: Response) {
-    const id = request.params.id;
+    const id = request.params.userId;
     const userRepository = AppDataSource.getRepository("User");
     const user = await userRepository.findOne({
       where: { id },
